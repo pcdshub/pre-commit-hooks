@@ -1,0 +1,19 @@
+*.swp
+__pycache__
+build
+*.pyc
+
+#Coverage Reports
+htmlcov
+.coverage
+.cache
+
+*.egg-info
+logs
+
+# Sphinx
+docs/source/generated/*
+
+#pytest
+.pytest_cache
+.vscode
