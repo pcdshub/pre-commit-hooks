@@ -1,0 +1,16 @@
+- id: xmllint-format
+  name: xmllint format
+  description: Format xml files for readability using xmllint
+  entry: xmllint-format
+  language: script
+  types: [xml]
+- id: twincat-lineids-remover
+  name: twincat lineids
+  description: Eliminate TwinCAT line ID lines
+  entry: twincat-lineids
+  language: python
+- id: leading-tabs-remover
+  name: leading tabs remover
+  description: Replace leading tabs with 4 spaces
+  entry: leading-tabs-remover
+  language: python
