@@ -10,8 +10,8 @@ def fix_file(filename, tab_width=TAB_WIDTH, max_replace=MAX_REPLACE):
         original_lines = fd.readlines()
     new_lines = []
     regex = re.compile(r'^\s*\t')
-    replace_count = 0
     for line in original_lines:
+        replace_count = 0
         while regex.match(line) and replace_count < MAX_REPLACE:
             replace_count += 1
             line.replace('\t', ' ' * tab_width, 1)
