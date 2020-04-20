@@ -1,9 +1,3 @@
-- id: xmllint-format
-  name: xmllint format
-  description: Format xml files for readability using xmllint
-  entry: xmllint-format
-  language: script
-  types: [xml]
 - id: twincat-lineids-remover
   name: twincat lineids
   description: Eliminate TwinCAT line ID lines
