@@ -1,0 +1,2 @@
+include versioneer.py
+include pre_commit_hooks/_version.py
