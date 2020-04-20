@@ -11,6 +11,7 @@ def fix_file(filename):
             new_lines.append(line)
             changed = True
     if changed:
+        print(f'Fixing {filename}')
         with open(filename, 'w') as fd:
             fd.write(''.join(new_lines))
 

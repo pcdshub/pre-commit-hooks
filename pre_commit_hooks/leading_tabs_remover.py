@@ -19,10 +19,12 @@ def fix_file(filename, tab_width=TAB_WIDTH, max_replace=MAX_REPLACE):
             line.replace('\t', ' ' * tab_width, 1)
         if not replace_count < MAX_REPLACE:
             raise RuntimeError('Reached max tab replacements for one line '
-                               f'({max_replace}). Aborting to avoid '
-                               'infinite loop.')
+                               f'({max_replace}) in file {filename}. On the '
+                               f'following line: "{line}".'
+                               'Aborting to avoid infinite loop.')
         new_lines.append(line)
     if changed:
+        print(f'Fixing {filename}')
         with open(filename, 'w') as fd:
             fd.write(''.join(new_lines))
 
