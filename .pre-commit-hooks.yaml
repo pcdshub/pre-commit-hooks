@@ -7,10 +7,17 @@
 - id: twincat-lineids-remover
   name: twincat lineids
   description: Eliminate TwinCAT line ID lines
-  entry: twincat-lineids
+  entry: twincat-lineids-remover
   language: python
+  files: .*\.TcPOU$
 - id: leading-tabs-remover
   name: leading tabs remover
   description: Replace leading tabs with 4 spaces
   entry: leading-tabs-remover
   language: python
+- id: twincat-leading-tabs-remover
+  name: twincat leading tabs remover
+  description: Replace leading tabs with 4 spaces in TwinCAT files
+  entry: leading-tabs-remover
+  language: python
+  files: .*\.(TcPOU|TcDUT|TcGVL)$
