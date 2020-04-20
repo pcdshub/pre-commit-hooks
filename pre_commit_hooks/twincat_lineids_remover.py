@@ -5,11 +5,14 @@ def fix_file(filename):
     with open(filename, 'r') as fd:
         original_lines = fd.readlines()
     new_lines = []
+    changed = False
     for line in original_lines:
         if '<LineId' not in line and 'LineIds>' not in line:
             new_lines.append(line)
-    with open(filename, 'w') as fd:
-        fd.write(''.join(new_lines))
+            changed = True
+    if changed:
+        with open(filename, 'w') as fd:
+            fd.write(''.join(new_lines))
 
 
 def main(args=None):

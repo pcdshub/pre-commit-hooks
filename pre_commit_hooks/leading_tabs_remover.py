@@ -9,10 +9,12 @@ def fix_file(filename, tab_width=TAB_WIDTH, max_replace=MAX_REPLACE):
     with open(filename, 'r') as fd:
         original_lines = fd.readlines()
     new_lines = []
+    changed = False
     regex = re.compile(r'^\s*\t')
     for line in original_lines:
         replace_count = 0
         while regex.match(line) and replace_count < MAX_REPLACE:
+            changed = True
             replace_count += 1
             line.replace('\t', ' ' * tab_width, 1)
         if not replace_count < MAX_REPLACE:
@@ -20,8 +22,9 @@ def fix_file(filename, tab_width=TAB_WIDTH, max_replace=MAX_REPLACE):
                                f'({max_replace}). Aborting to avoid '
                                'infinite loop.')
         new_lines.append(line)
-    with open(filename, 'w') as fd:
-        fd.write(''.join(new_lines))
+    if changed:
+        with open(filename, 'w') as fd:
+            fd.write(''.join(new_lines))
 
 
 def main(args=None):
