@@ -13,14 +13,15 @@ def fix_file(filename, tab_width=TAB_WIDTH, max_replace=MAX_REPLACE):
     regex = re.compile(r'^\s*\t')
     for line in original_lines:
         replace_count = 0
-        while regex.match(line) and replace_count < MAX_REPLACE:
+        while regex.match(line) and replace_count < max_replace:
             changed = True
             replace_count += 1
-            line.replace('\t', ' ' * tab_width, 1)
-        if not replace_count < MAX_REPLACE:
+            line = line.replace('\t', ' ' * tab_width, 1)
+        if not replace_count < max_replace:
+            line = line.strip('\r\n')
             raise RuntimeError('Reached max tab replacements for one line '
-                               f'({max_replace}) in file {filename}. On the '
-                               f'following line: "{line}".'
+                               f'({max_replace}) in file {filename}, on the '
+                               f'following line: "{line}". '
                                'Aborting to avoid infinite loop.')
         new_lines.append(line)
     if changed:
