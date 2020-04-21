@@ -26,22 +26,22 @@ $ git commit -am "test"       # run pre-commit and - if successful - commit
 
 If pre-commit is not an available command, you may need to look into platform-specific configuration. Generally, you'll need to be in a shell environment that has access to python and with pre-commit installed as directed in the above sections. Typical issues include a misconfigured PATH variable and not having python available. For specific help on integrating with various clients and on various operation systems, see the sections below. If you solve other client integration problems for your favorite workflow, please expand this section in a pull request.
 
-## Shell Integration on Windows
+#### Shell Integration on Windows
 
 - Make sure git is set up for normal shell use (a git installation option) if you want to use cmd or powershell
 - I have had success using the Anaconda Powershell Prompt and a conda environment with pre-commit installed
 
-## Git Bash Integration on Windows
+#### Git Bash Integration on Windows
 
 - Add the following to your `~/.bash_profile`: `alias python='winpty python'`, to allow python to run without hangining.
 - If using conda, run `$ conda init bash`, using the conda.exe in your `~/miniconda3/scripts` folder. You may also want to set this up to `conda activate` your `pre-commit` environment.
 - restart your shell after doing the above
 
-## TwinCAT Integrated Git on Windows
+#### TwinCAT Integrated Git on Windows
 
 - Someone needs to investigate this one. I don't have this running locally yet and am happy enough with the shells for now.
 
-## VSCode Integration on Windows
+#### VSCode Integration on Windows
 
 - Someone needs to figure out how to get the git extension to work here.
 - If your shell integration works, you can connect to this in the integrated terminal by setting `terminal.integrated.shellArgs.windows` to the same same arguments as used in the Anaconda Powershell prompt shortcut's properties.
