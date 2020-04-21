@@ -15,15 +15,15 @@
   entry: leading-tabs-remover
   language: python
   files: .*\.(TcPOU|TcDUT|TcGVL)$
-- id: xmllint-format
-  name: xmllint formatter
-  description: Use xmllint --format to beautify xml files
-  entry: xmllint-format
+- id: xml-format
+  name: xml format
+  description: Use lxml to beautify xml files
+  entry: xml-format
   language: python
   types: [xml]
-- id: twincat-xmllint-format
-  name: twincat xml formatter
-  description: xmllint-format configured for TwinCAT
-  entry: xmllint-format
+- id: twincat-xml-format
+  name: twincat xml format
+  description: xml-format configured for TwinCAT
+  entry: xml-format
   language: python
   files: .*\.(tmc|tpy|xml)$
