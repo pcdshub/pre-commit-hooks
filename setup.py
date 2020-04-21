@@ -1,5 +1,6 @@
+from setuptools import find_packages, setup
+
 import versioneer
-from setuptools import setup, find_packages
 
 with open('requirements.txt') as fd:
     requirements = [fd.read().splitlines()]

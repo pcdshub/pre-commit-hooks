@@ -2,7 +2,7 @@
 Pre-commit hooks for PCDS projects (https://pre-commit.com/)
 
 
-**To install pre-commit on your machine,** use `$ brew install pre-commit` 
+**To install pre-commit on your machine,** use `$ brew install pre-commit`
 OR `$ pip install pre-commit`
 
 
