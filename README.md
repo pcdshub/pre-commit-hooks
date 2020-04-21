@@ -33,7 +33,7 @@ If pre-commit is not an available command, you may need to look into platform-sp
 
 #### Git Bash Integration on Windows
 
-- Add the following to your `~/.bash_profile`: `alias python='winpty python'`, to allow python to run without hangining.
+- Add the following to your `~/.bash_profile`: `alias python='winpty python'`, to allow python to run without hanging.
 - If using conda, run `$ conda init bash`, using the conda.exe in your `~/miniconda3/scripts` folder. You may also want to set this up to `conda activate` your `pre-commit` environment.
 - restart your shell after doing the above
 
