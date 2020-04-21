@@ -6,10 +6,13 @@ def fix_file(filename):
         original_lines = fd.readlines()
     new_lines = []
     changed = False
+
     for line in original_lines:
-        if '<LineId' not in line and 'LineIds>' not in line:
-            new_lines.append(line)
+        if '<LineId' in line or 'LineIds>' in line:
             changed = True
+        else:
+            new_lines.append(line)
+
     if changed:
         print(f'Fixing {filename}')
         with open(filename, 'w') as fd:
