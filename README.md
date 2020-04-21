@@ -44,4 +44,4 @@ If pre-commit is not an available command, you may need to look into platform-sp
 #### VSCode Integration on Windows
 
 - Someone needs to figure out how to get the git extension to work here.
-- If your shell integration works, you can connect to this in the integrated terminal by setting `terminal.integrated.shellArgs.windows` to the same same arguments as used in the Anaconda Powershell prompt shortcut's properties.
+- If your shell integration works, you can connect to this in the integrated terminal by setting `terminal.integrated.shellArgs.windows` to the same arguments as used in the Anaconda Powershell prompt shortcut's properties.
