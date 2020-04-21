@@ -1,12 +1,12 @@
 import versioneer
 from setuptools import setup, find_packages
 
-# with open('requirements.txt') as f:
-#     requirements = [f.read().split()]
-requirements = []
+with open('requirements.txt') as fd:
+    requirements = [fd.read().splitlines()]
 
 hook_names = ['twincat-lineids-remover',
-              'leading-tabs-remover']
+              'leading-tabs-remover',
+              'xmllint-format']
 console_scripts = []
 for name in hook_names:
     module = name.replace('-', '_')
