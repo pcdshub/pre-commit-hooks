@@ -1,28 +1,25 @@
 import argparse
 import re
 
-MAX_REPLACE = 10
 TAB_WIDTH = 4
 
 
-def fix_file(filename, tab_width=TAB_WIDTH, max_replace=MAX_REPLACE):
+def fix_file(filename, tab_width=TAB_WIDTH):
     with open(filename, 'r') as fd:
         original_lines = fd.readlines()
     new_lines = []
     changed = False
-    regex = re.compile(r'^\s*\t')
+    # Match all leading whitespace and group it
+    regex = re.compile(r'^(\s+)')
     for line in original_lines:
-        replace_count = 0
-        while regex.match(line) and replace_count < max_replace:
-            changed = True
-            replace_count += 1
-            line = line.replace('\t', ' ' * tab_width, 1)
-        if not replace_count < max_replace:
-            line = line.strip('\r\n')
-            raise RuntimeError('Reached max tab replacements for one line '
-                               f'({max_replace}) in file {filename}, on the '
-                               f'following line: "{line}". '
-                               'Aborting to avoid infinite loop.')
+        match = regex.match(line)
+        if match:
+            leading_whitespace = match.groups()[0]
+            # Fix if leading whitespace contain tabs
+            if '\t' in leading_whitespace:
+                changed = True
+                line = (leading_whitespace.replace('\t', ' ' * tab_width)
+                        + line.lstrip())
         new_lines.append(line)
     if changed:
         print(f'Fixing {filename}')
