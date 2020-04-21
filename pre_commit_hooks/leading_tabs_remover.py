@@ -31,10 +31,11 @@ def main(args=None):
     if args is None:
         parser = argparse.ArgumentParser()
         parser.add_argument('filenames', nargs='*')
+        parser.add_argument('--tab-width', type=int, default=TAB_WIDTH)
         args = parser.parse_args()
     try:
         for filename in args.filenames:
-            fix_file(filename)
+            fix_file(filename, tab_width=args.tab_width)
         return 0
     except Exception as exc:
         print(exc)
