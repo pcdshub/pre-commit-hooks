@@ -1,0 +1,29 @@
+- id: twincat-lineids-remover
+  name: TwinCAT LineID Remover
+  description: Eliminate TwinCAT line ID lines
+  entry: twincat-lineids-remover
+  language: python
+  files: .*\.TcPOU$
+- id: leading-tabs-remover
+  name: Leading Tabs Remover
+  description: Replace leading tabs with 4 spaces
+  entry: leading-tabs-remover
+  language: python
+- id: twincat-leading-tabs-remover
+  name: TwinCAT Leading Tabs Remover
+  description: leading-tabs-remover configured for TwinCAT
+  entry: leading-tabs-remover
+  language: python
+  files: .*\.(TcPOU|TcDUT|TcGVL)$
+- id: xml-format
+  name: XML Formatter
+  description: Use lxml to beautify xml files
+  entry: xml-format
+  language: python
+  types: [xml]
+- id: twincat-xml-format
+  name: TwinCAT XML Formatter
+  description: xml-format configured for TwinCAT
+  entry: xml-format
+  language: python
+  files: .*\.(tmc|tpy|xml)$
