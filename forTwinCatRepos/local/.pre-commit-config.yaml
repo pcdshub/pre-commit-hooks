@@ -1,0 +1,40 @@
+# See https://pre-commit.com for more information
+# See https://pre-commit.com/hooks.html for more hooks
+repos:
+- repo: local
+  hooks:
+  - id: twincat-lineids-remover
+    name: TwinCAT LineID Remover
+    description: Eliminate TwinCAT line ID lines
+    entry: C:/repos/pcds-pre-commit-hooks/pre_commit_hooks/twincat_lineids_remover.py
+    language: python
+    files: .*\.TcPOU$
+  - id: leading-tabs-remover
+    name: Leading Tabs Remover
+    description: Replace leading tabs with 4 spaces
+    entry: C:/repos/pcds-pre-commit-hooks/pre_commit_hooks/leading_tabs_remover.py
+    language: python
+  - id: twincat-leading-tabs-remover
+    name: TwinCAT Leading Tabs Remover
+    description: leading-tabs-remover configured for TwinCAT
+    entry: C:/repos/pcds-pre-commit-hooks/pre_commit_hooks/leading_tabs_remover.py
+    language: python
+    files: .*\.(TcPOU|TcDUT|TcGVL)$
+  - id: xml-format
+    name: XML Formatter
+    description: Use lxml to beautify xml files
+    entry: C:/repos/pcds-pre-commit-hooks/pre_commit_hooks/xml_format.py
+    language: python
+    types: [xml]
+  - id: twincat-xml-format
+    name: TwinCAT XML Formatter
+    description: xml-format configured for TwinCAT
+    entry: C:/repos/pcds-pre-commit-hooks/pre_commit_hooks/xml_format.py
+    language: python
+    files: .*\.(tmc|tpy|xml)$
+  - id: trailing-whitespace
+    files: \.(TcPOU|TcDUT|TcGVL)$
+    description: Fix trailing whitespace for TwinCAT source
+    name: Trailing whitespace
+    entry: C:/repos/pcds-pre-commit-hooks/pre_commit_hooks/trailing_whitespace_fixer.py
+    language: python
