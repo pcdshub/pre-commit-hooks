@@ -40,7 +40,7 @@ def main(args=None):
         args = parser.parse_args()
     try:
         for filename in args.filenames:
-            fix_file(filename)
+            fix_file(filename, tab_width=args.tab_width)
         return 0
     except Exception as exc:
         print(exc)
