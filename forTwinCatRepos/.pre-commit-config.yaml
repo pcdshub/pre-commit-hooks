@@ -9,7 +9,7 @@ repos:
         files: \.(TcPOU|TcDUT|TcGVL)$
 
 -   repo: https://github.com/pcdshub/pre-commit-hooks.git
-    rev: v1.1.0
+    rev: v1.2.0
     hooks:
     -   id: twincat-leading-tabs-remover
     -   id: twincat-lineids-remover
