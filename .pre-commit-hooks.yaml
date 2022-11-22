@@ -27,3 +27,9 @@
   entry: xml-format
   language: python
   files: .*\.(tmc|tpy|xml)$
+- id: check-fixed-library-versions
+  name: Check fixed library versions
+  description: Checks if there are PLC libraries whos versions are not fixed.
+  entry: check-fixed-library-versions
+  language: python
+  files: .*\.plcproj$

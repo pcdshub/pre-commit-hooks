@@ -7,7 +7,8 @@ with open('requirements.txt') as fd:
 
 hook_names = ['twincat-lineids-remover',
               'leading-tabs-remover',
-              'xml-format']
+              'xml-format',
+              'check-fixed-library-versions']
 console_scripts = []
 for name in hook_names:
     module = name.replace('-', '_')
