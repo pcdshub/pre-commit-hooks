@@ -15,3 +15,5 @@ repos:
     -   id: twincat-lineids-remover
     -   id: twincat-xml-format
     -   id: check-fixed-library-versions
+    # Optional, if you use pytmc to generate EPICS IOCs:
+    # -   id: pytmc-pragma-linter
