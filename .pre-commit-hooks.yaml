@@ -38,5 +38,5 @@
   description: Lint pytmc pragmas
   entry: bash -c 'set -ex; for fn in "$@"; do pytmc pragmalint "$fn"; done' --
   language: python
-  files: .*\.(TcPOU|TcGVL)$
+  files: .*\.(TcPOU|TcGVL|TcDUT)$
   additional_dependencies: ["pytmc"]
