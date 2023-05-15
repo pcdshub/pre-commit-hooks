@@ -33,3 +33,10 @@
   entry: check-fixed-library-versions
   language: python
   files: .*\.plcproj$
+- id: pytmc-pragma-linter
+  name: pytmc-pragma-linter
+  description: Lint pytmc pragmas
+  entry: bash -c 'set -ex; for fn in "$@"; do pytmc pragmalint "$fn"; done' --
+  language: python
+  files: .*\.(TcPOU|TcGVL)$
+  additional_dependencies: ["pytmc"]
