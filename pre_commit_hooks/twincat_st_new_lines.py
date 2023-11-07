@@ -3,7 +3,7 @@ from lxml import etree
 
 def structured_text_formatter(path: str, lines: int = 1) -> None:
     root = etree.parse(path).getroot()
-    sect = root.findall('.//Declaration|.//Implementation/ST')
+    sect = root.xpath('.//Declaration|.//Implementation/ST')
     if len(sect) == 0:
         return
 
