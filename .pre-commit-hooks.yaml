@@ -40,3 +40,9 @@
   language: python
   files: .*\.(TcPOU|TcGVL|TcDUT)$
   additional_dependencies: ["pytmc"]
+- id: twincat-st-newline
+  name: TwinCAT ST Newline Formatter
+  description: Affixes newlines to ST segments
+  entry: twincat-st-newline
+  language: python
+  files: .*\.(TcPOU|TcGVL|TcDUT)$
