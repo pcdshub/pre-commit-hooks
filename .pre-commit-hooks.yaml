@@ -40,3 +40,9 @@
   language: python
   files: .*\.(TcPOU|TcGVL|TcDUT)$
   additional_dependencies: ["pytmc"]
+- id: no-product-version
+  name: Check for product version
+  description: Checks if the product version is saved in the TwinCAT source file.
+  entry: no-product-version
+  language: python
+  files: .*\.(TcPOU|TcDUT|TcGVL)$
