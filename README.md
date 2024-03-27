@@ -10,9 +10,31 @@ Pre-commit hooks for PCDS projects (https://pre-commit.com/)
 
 ### To install pre-commit hooks to a local repository:
 
-If .pre-config-config.yaml does not already exist in the repository, copy
+If `.pre-config-config.yaml` does not already exist in the repository, copy
 the appropriate file from this repository to the top-level of your local
-repository and commit the addition.
+repository, or add the folowing to an existing `.pre-config-config.yaml` 
+file and commit the addition.
+
+```yaml
+repos:
+-   repo: https://github.com/pre-commit/pre-commit-hooks.git
+    rev: v2.5.0
+    hooks:
+    -   id: no-commit-to-branch
+    -   id: trailing-whitespace
+        files: \.(TcPOU|TcDUT|TcGVL)$
+
+-   repo: https://github.com/pcdshub/pre-commit-hooks.git
+    rev: v1.4.0
+    hooks:
+    -   id: twincat-leading-tabs-remover
+    -   id: twincat-lineids-remover
+    -   id: twincat-xml-format
+    -   id: check-fixed-library-versions
+    -   id: no-product-version
+    # Optional, if you use pytmc to generate EPICS IOCs:
+    # -   id: pytmc-pragma-linter
+```
 
 Once the file is there, run the following from inside your repository:
 ```bash
