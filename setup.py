@@ -9,7 +9,9 @@ hook_names = ['twincat-lineids-remover',
               'leading-tabs-remover',
               'xml-format',
               'check-fixed-library-versions',
-              'twincat-st-newline']
+              'no-product-version',
+              'twincat-st-newline',
+              ]
 console_scripts = []
 for name in hook_names:
     module = name.replace('-', '_')
