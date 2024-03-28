@@ -9,12 +9,13 @@ repos:
         files: \.(TcPOU|TcDUT|TcGVL)$
 
 -   repo: https://github.com/pcdshub/pre-commit-hooks.git
-    rev: v1.4.0
+    rev: v1.5.0
     hooks:
     -   id: twincat-leading-tabs-remover
     -   id: twincat-lineids-remover
     -   id: twincat-xml-format
     -   id: check-fixed-library-versions
     -   id: no-product-version
+    -   id: twincat-st-newline
     # Optional, if you use pytmc to generate EPICS IOCs:
     # -   id: pytmc-pragma-linter

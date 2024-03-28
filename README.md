@@ -12,7 +12,7 @@ Pre-commit hooks for PCDS projects (https://pre-commit.com/)
 
 If `.pre-config-config.yaml` does not already exist in the repository, copy
 the appropriate file from this repository to the top-level of your local
-repository, or add the folowing to an existing `.pre-config-config.yaml` 
+repository, or add the folowing to an existing `.pre-config-config.yaml`
 file and commit the addition.
 
 ```yaml
@@ -25,13 +25,14 @@ repos:
         files: \.(TcPOU|TcDUT|TcGVL)$
 
 -   repo: https://github.com/pcdshub/pre-commit-hooks.git
-    rev: v1.4.0
+    rev: v1.5.0
     hooks:
     -   id: twincat-leading-tabs-remover
     -   id: twincat-lineids-remover
     -   id: twincat-xml-format
     -   id: check-fixed-library-versions
     -   id: no-product-version
+    -   id: twincat-st-newline
     # Optional, if you use pytmc to generate EPICS IOCs:
     # -   id: pytmc-pragma-linter
 ```

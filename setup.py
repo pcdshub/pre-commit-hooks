@@ -10,6 +10,7 @@ hook_names = ['twincat-lineids-remover',
               'xml-format',
               'check-fixed-library-versions',
               'no-product-version',
+              'twincat-st-newline',
               ]
 console_scripts = []
 for name in hook_names:
