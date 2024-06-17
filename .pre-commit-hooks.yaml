@@ -52,3 +52,9 @@
   entry: twincat-st-newline
   language: python
   files: .*\.(TcPOU|TcGVL|TcDUT)$
+- id: minimize-id-changes
+  name: Check minimize id changes checked
+  description: Checks if the minimize id changes option is checked in the plcproj file.
+  entry: minimize-id-changes
+  language: python
+  files: .*\.plcproj$
