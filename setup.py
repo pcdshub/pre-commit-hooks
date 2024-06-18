@@ -11,6 +11,7 @@ hook_names = ['twincat-lineids-remover',
               'check-fixed-library-versions',
               'no-product-version',
               'twincat-st-newline',
+              'minimize-id-changes',
               ]
 console_scripts = []
 for name in hook_names:

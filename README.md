@@ -25,7 +25,7 @@ repos:
         files: \.(TcPOU|TcDUT|TcGVL)$
 
 -   repo: https://github.com/pcdshub/pre-commit-hooks.git
-    rev: v1.5.0
+    rev: v1.6.0
     hooks:
     -   id: twincat-leading-tabs-remover
     -   id: twincat-lineids-remover
@@ -33,6 +33,9 @@ repos:
     -   id: check-fixed-library-versions
     -   id: no-product-version
     -   id: twincat-st-newline
+    # Check if minimize id changes is selected in the plc project file.
+    # See https://www.youtube.com/watch?v=KKpBtaYjfWo&t=935s why to do this.
+    -   id: minimize-id-changes
     # Optional, if you use pytmc to generate EPICS IOCs:
     # -   id: pytmc-pragma-linter
 ```
