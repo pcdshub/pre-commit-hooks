@@ -8,3 +8,10 @@ def tc_version_pinned(filename: Union[Traversable, str]) -> bool:
     root = tree.getroot()
 
     return 'TcVersionFixed' in root.attrib
+
+
+def get_tc_version(filename: Union[Traversable, str]) -> str:
+    tree = ET.parse(filename)
+    root = tree.getroot()
+
+    return root.attrib.get('TcVersion')
