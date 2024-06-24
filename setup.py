@@ -13,6 +13,7 @@ hook_names = [
     "no-product-version",
     "twincat-st-newline",
     "minimize-id-changes",
+    "check-twincat-versions",
 ]
 console_scripts = []
 for name in hook_names:

@@ -58,3 +58,9 @@
   entry: minimize-id-changes
   language: python
   files: .*\.plcproj$
+- id: check-twincat-versions
+  name: Check if all TwinCAT versions match
+  description: Checks if TwinCAT versions match in different tsproj files, or if it matches the targeted one.
+  entry: check-twincat-versions
+  language: python
+  files: .*\.tsproj$
