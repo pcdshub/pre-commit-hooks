@@ -36,11 +36,13 @@ def fix_pinned_version(xml_content: str, pin_version: bool) -> str:
 
     return new_xml_content
 
+
 def main(args=None):
     if args is None:
         parser = argparse.ArgumentParser()
         parser.add_argument('filenames', nargs='+', help='List of XML filenames to process')
         parser.add_argument('--target-version', type=str, help='Target TcVersion to enforce')
+        parser.add_argument('--fix', action='store_true', help='Fix the versions if they do not match the target version')
         args = parser.parse_args()
 
     try:
@@ -55,9 +57,18 @@ def main(args=None):
         if args.target_version:
             mismatched_files = [fname for fname, ver in versions.items() if ver != args.target_version]
             if mismatched_files:
-                raise PreCommitException(
-                    "The following files are not set to the targeted TwinCAT version "
-                    f"{args.target_version}:{itemize}{itemize.join(mismatched_files)}")
+                if args.fix:
+                    for filename in mismatched_files:
+                        with open(filename, 'r') as file:
+                            xml_content = file.read()
+                        fixed_content = fix_tc_version(xml_content, args.target_version)
+                        with open(filename, 'w') as file:
+                            file.write(fixed_content)
+                    print(f"Fixed TwinCAT versions for:{itemize}{itemize.join(mismatched_files)}")
+                else:
+                    raise PreCommitException(
+                        "The following files are not set to the targeted TwinCAT version "
+                        f"{args.target_version}:{itemize}{itemize.join(mismatched_files)}")
         else:
             unique_versions = set(versions.values())
             if len(unique_versions) > 1:
