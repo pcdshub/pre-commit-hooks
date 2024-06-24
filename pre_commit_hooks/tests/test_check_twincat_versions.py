@@ -2,7 +2,8 @@ from importlib.resources import files
 
 import pre_commit_hooks.tests.data as test_data
 import pytest
-from pre_commit_hooks.check_twincat_versions import (fix_tc_version,
+from pre_commit_hooks.check_twincat_versions import (fix_pinned_version,
+                                                     fix_tc_version,
                                                      get_tc_version,
                                                      tc_version_pinned)
 
@@ -22,8 +23,13 @@ def not_pinned_4024_55():
     return files(test_data).joinpath("version-3.1.4024.55.tsproj").read_text()
 
 
-def test_pinned_version(pinned_4024_44):
+@pytest.fixture
+def not_pinned_4024_44():
+    return files(test_data).joinpath("not-pinned-version-3.1.4024.44.tsproj").read_text()
+
+def test_pinned_version(pinned_4024_44, not_pinned_4024_44):
     assert tc_version_pinned(pinned_4024_44)
+    assert not tc_version_pinned(not_pinned_4024_44)
 
 
 def test_absent_pinned_version(not_pinned_4024_22):
@@ -42,3 +48,14 @@ def test_fix_tc_version(pinned_4024_44, not_pinned_4024_22):
 
     changed_version2 = fix_tc_version(not_pinned_4024_22, "3.1.4024.55")
     assert get_tc_version(changed_version2) == "3.1.4024.55"
+
+
+def test_fix_pinned_version(not_pinned_4024_22, not_pinned_4024_44, pinned_4024_44):
+    changed_version = fix_pinned_version(not_pinned_4024_22, True)
+    assert tc_version_pinned(changed_version)
+
+    changed_version2 = fix_pinned_version(not_pinned_4024_44, True)
+    assert tc_version_pinned(changed_version2)
+
+    changed_version3 = fix_pinned_version(pinned_4024_44, False)
+    assert not tc_version_pinned(changed_version3)
