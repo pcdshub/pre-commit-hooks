@@ -1,7 +1,7 @@
 import argparse
 import re
 import xml.etree.ElementTree as ET
-from exceptions import PreCommitException
+from pre_commit_hooks.exceptions import PreCommitException
 
 
 def tc_version_pinned(xml_content: str) -> bool:
