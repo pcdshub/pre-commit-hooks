@@ -10,7 +10,7 @@ class PreCommitException(Exception):
 
 
 def check_file(filename):
-    with open(filename, 'rb') as fd:
+    with open(filename, "rb") as fd:
         original_xml = fd.read()
 
     xml_parser = etree.XMLParser(remove_blank_text=True)
@@ -18,16 +18,17 @@ def check_file(filename):
 
     tc_plc_object = list(parse_tree.iter("TcPlcObject"))[0].attrib
     # Check if it contains a product version attribute
-    if 'ProductVersion' in tc_plc_object:
+    if "ProductVersion" in tc_plc_object:
         raise PreCommitException(
             f"Detected product version ({tc_plc_object['ProductVersion']}) in {filename}. "
-            f"To disable this go to Project settings > Advanced and disable 'Write product version in files.'")
+            f"To disable this go to Project settings > Advanced and disable 'Write product version in files.'"
+        )
 
 
 def main(args=None):
     if args is None:
         parser = argparse.ArgumentParser()
-        parser.add_argument('filenames', nargs='*')
+        parser.add_argument("filenames", nargs="*")
         args = parser.parse_args()
     try:
         for filename in args.filenames:

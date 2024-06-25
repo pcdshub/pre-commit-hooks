@@ -47,15 +47,17 @@ def xml_once(original_xml: str, tab_width: int) -> str:
     xml_parser = etree.XMLParser(remove_blank_text=True)
     parse_tree = etree.XML(original_xml, parser=xml_parser).getroottree()
     etree.indent(parse_tree, space=" " * tab_width)
-    new_xml = etree.tostring(parse_tree,
-                             pretty_print=True,
-                             xml_declaration=True,
-                             encoding=parse_tree.docinfo.encoding)
+    new_xml = etree.tostring(
+        parse_tree,
+        pretty_print=True,
+        xml_declaration=True,
+        encoding=parse_tree.docinfo.encoding,
+    )
 
     # lxml does not preserve line endings, so we must do it ourselves.
     # lxml always outputs with unix line endings (LF)
-    if b'\r\n' in original_xml:
-        new_xml = new_xml.replace(b'\n', b'\r\n')
+    if b"\r\n" in original_xml:
+        new_xml = new_xml.replace(b"\n", b"\r\n")
     return new_xml
 
 
@@ -75,5 +77,5 @@ def main(args=None):
         return 1
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     exit(main())
