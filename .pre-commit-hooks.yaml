@@ -63,6 +63,6 @@
   description: Checks if TwinCAT versions match in different tsproj files, or if it matches the targeted one.
   entry: check-twincat-versions
   # All files need to be passed at once, else not all files are compared to eachother
-  require_serial: true    
+  require_serial: true
   language: python
   files: .*\.tsproj$

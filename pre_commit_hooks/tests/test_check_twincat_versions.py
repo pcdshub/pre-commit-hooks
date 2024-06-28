@@ -1,11 +1,14 @@
 from importlib.resources import files
 
-import pre_commit_hooks.tests.data as test_data
 import pytest
-from pre_commit_hooks.check_twincat_versions import (fix_pinned_version,
-                                                     fix_tc_version,
-                                                     get_tc_version,
-                                                     tc_version_pinned)
+
+import pre_commit_hooks.tests.data as test_data
+from pre_commit_hooks.check_twincat_versions import (
+    fix_pinned_version,
+    fix_tc_version,
+    get_tc_version,
+    tc_version_pinned,
+)
 
 
 @pytest.fixture
@@ -25,7 +28,10 @@ def not_pinned_4024_55():
 
 @pytest.fixture
 def not_pinned_4024_44():
-    return files(test_data).joinpath("not-pinned-version-3.1.4024.44.tsproj").read_text()
+    return (
+        files(test_data).joinpath("not-pinned-version-3.1.4024.44.tsproj").read_text()
+    )
+
 
 def test_pinned_version(pinned_4024_44, not_pinned_4024_44):
     assert tc_version_pinned(pinned_4024_44)
