@@ -83,6 +83,7 @@ def main(args=None):
                 fname for fname, ver in versions.items() if ver != args.target_version
             ]
             if mismatched_files:
+                reason_msg = f"\nReason: {args.reason}" if args.reason else ""
                 if args.fix:
                     for filename in mismatched_files:
                         with open(filename, "r") as file:
@@ -90,11 +91,11 @@ def main(args=None):
                         fixed_content = fix_tc_version(xml_content, args.target_version)
                         with open(filename, "w") as file:
                             file.write(fixed_content)
+
                     print(
-                        f"Fixed TwinCAT versions for:{itemize}{itemize.join(mismatched_files)}"
+                        f"Fixed TwinCAT versions for:{itemize}{itemize.join(mismatched_files)}{reason_msg}"
                     )
                 else:
-                    reason_msg = f"\nReason: {args.reason}" if args.reason else ""
                     exception_message += (
                         "The following files are not set to the targeted TwinCAT version "
                         f"{args.target_version}:{itemize}{itemize.join(mismatched_files)}{reason_msg}"
