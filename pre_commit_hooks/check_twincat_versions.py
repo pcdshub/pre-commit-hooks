@@ -56,18 +56,28 @@ def main(args=None):
             action="store_true",
             help="Fix the versions if they do not match the target version",
         )
-        parser.add_argument("--reason", type=str, help="Reason for pinning the version")
+        parser.add_argument(
+            "--reason", type=str, help="Reason for targeting a specific version"
+        )
+        parser.add_argument(
+            "--pinned",
+            action=argparse.BooleanOptionalAction,
+            help="Check if the TwinCAT versions should be pinned",
+        )
+
         args = parser.parse_args()
 
     try:
         versions = {}
+        pinned = {}
         for filename in args.filenames:
             with open(filename, "r") as file:
                 xml_content = file.read()
-                version = get_tc_version(xml_content)
-                versions[filename] = version
+                versions[filename] = get_tc_version(xml_content)
+                pinned[filename] = tc_version_pinned(xml_content)
 
         itemize = "\n -"
+        exception_message = ""
         if args.target_version:
             mismatched_files = [
                 fname for fname, ver in versions.items() if ver != args.target_version
@@ -85,18 +95,42 @@ def main(args=None):
                     )
                 else:
                     reason_msg = f"\nReason: {args.reason}" if args.reason else ""
-                    raise PreCommitException(
+                    exception_message += (
                         "The following files are not set to the targeted TwinCAT version "
                         f"{args.target_version}:{itemize}{itemize.join(mismatched_files)}{reason_msg}"
                     )
         else:
             unique_versions = set(versions.values())
             if len(unique_versions) > 1:
-                raise PreCommitException(
+                exception_message += (
                     "Not all files have the same TwinCAT version:"
                     f"{itemize}"
                     + itemize.join(f"{fname}: {ver}" for fname, ver in versions.items())
                 )
+
+        if args.pinned:
+            mismatched_files = [
+                fname for fname, pin in pinned.items() if pin != args.pinned
+            ]
+            if mismatched_files:
+                if args.fix:
+                    for filename in mismatched_files:
+                        with open(filename, "r") as file:
+                            xml_content = file.read()
+                        fixed_content = fix_pinned_version(xml_content, args.pinned)
+                        with open(filename, "w") as file:
+                            file.write(fixed_content)
+                    print(
+                        f"Fixed pinned state for:{itemize}{itemize.join(mismatched_files)}"
+                    )
+                else:
+                    exception_message += "\n\n" if len(exception_message) > 0 else ""
+                    exception_message += (
+                        "The following files have no pinned TwinCAT version"
+                        f"{itemize}{itemize.join(mismatched_files)}"
+                    )
+        if len(exception_message) > 0:
+            raise PreCommitException(exception_message)
 
         return 0
     except Exception as exc:
