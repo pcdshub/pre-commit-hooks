@@ -109,7 +109,7 @@ def main(args=None):
                     + itemize.join(f"{fname}: {ver}" for fname, ver in versions.items())
                 )
 
-        if args.pinned:
+        if args.pinned is not None:
             mismatched_files = [
                 fname for fname, pin in pinned.items() if pin != args.pinned
             ]
@@ -125,11 +125,13 @@ def main(args=None):
                         f"Fixed pinned state for:{itemize}{itemize.join(mismatched_files)}"
                     )
                 else:
-                    exception_message += "\n\n" if len(exception_message) > 0 else ""
-                    exception_message += (
-                        "The following files have no pinned TwinCAT version"
-                        f"{itemize}{itemize.join(mismatched_files)}"
+                    should_be_pinned_message = (
+                        "The following files should have a pinned TwinCAT version"
+                        if args.pinned
+                        else "The following files should NOT have a pinned TwinCAT version"
                     )
+                    exception_message += "\n\n" if len(exception_message) > 0 else ""
+                    exception_message += f"{should_be_pinned_message}{itemize}{itemize.join(mismatched_files)}"
         if len(exception_message) > 0:
             raise PreCommitException(exception_message)
 
