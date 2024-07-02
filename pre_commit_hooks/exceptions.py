@@ -1,0 +1,2 @@
+class PreCommitException(Exception):
+    pass

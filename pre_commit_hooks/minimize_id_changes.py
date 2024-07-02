@@ -3,9 +3,7 @@ import xml.etree.ElementTree as ET
 from importlib.abc import Traversable
 from typing import Union
 
-
-class PreCommitException(Exception):
-    pass
+from pre_commit_hooks.exceptions import PreCommitException
 
 
 def minimize_id_changes_checked(filename: Union[Traversable, str]) -> None:
