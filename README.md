@@ -42,6 +42,8 @@ repos:
         # --target-version: Set a version that you want the tsproj file to have
         # --fix: Fix the version numbers if a target version is set
         # --reason: Add a reason to the error message in case of a non-matching version.
+        # --pinned: Require the TwinCAT version to be pinned. Apply pinning if combined with --fix.
+        # --no-pinned: Require the TwinCAT version to not be pinned. Remove pinning if combined with --fix.
         args: [--target-version=3.1.4024.20, --fix, --reason="This version has a crucial new feature"]
     # Optional, if you use pytmc to generate EPICS IOCs:
     # -   id: pytmc-pragma-linter
