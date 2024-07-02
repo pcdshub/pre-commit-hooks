@@ -46,23 +46,23 @@ def main(args=None):
     if args is None:
         parser = argparse.ArgumentParser()
         parser.add_argument(
-            "filenames", nargs="+", help="List of XML filenames to process"
+            "filenames", nargs="+", help="List of tsproj filenames to process."
         )
         parser.add_argument(
-            "--target-version", type=str, help="Target TcVersion to enforce"
+            "--target-version", type=str, help="Target TwinCAT version to enforce."
         )
         parser.add_argument(
             "--fix",
             action="store_true",
-            help="Fix the versions if they do not match the target version",
+            help="Fix the versions if they do not match the target version and fix the pinned state if combined with --pinned/no-pinned.",
         )
         parser.add_argument(
-            "--reason", type=str, help="Reason for targeting a specific version"
+            "--reason", type=str, help="Reason for targeting a specific version."
         )
         parser.add_argument(
             "--pinned",
             action=argparse.BooleanOptionalAction,
-            help="Check if the TwinCAT versions should be pinned",
+            help="Check if the TwinCAT version should be pinned. Applies or removes pinning if combined with --fix.",
         )
 
         args = parser.parse_args()
