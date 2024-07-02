@@ -4,9 +4,7 @@ import argparse
 
 from lxml import etree
 
-
-class PreCommitException(Exception):
-    pass
+from pre_commit_hooks.exceptions import PreCommitException
 
 
 def check_file(filename):
