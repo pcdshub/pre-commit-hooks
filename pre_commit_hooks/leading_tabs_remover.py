@@ -7,7 +7,7 @@ TAB_WIDTH = 4
 
 
 def fix_file(filename, tab_width=TAB_WIDTH):
-    with open(filename, "r") as fd:
+    with open(filename, "r", encoding="utf-8") as fd:
         original_lines = fd.readlines()
     new_lines = []
     changed = False
@@ -24,7 +24,7 @@ def fix_file(filename, tab_width=TAB_WIDTH):
         new_lines.append(line)
     if changed:
         print(f"Fixing {filename}")
-        with open(filename, "w") as fd:
+        with open(filename, "w", encoding="utf-8") as fd:
             fd.write("".join(new_lines))
 
 

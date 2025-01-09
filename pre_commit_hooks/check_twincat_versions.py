@@ -71,7 +71,7 @@ def main(args=None):
         versions = {}
         pinned = {}
         for filename in args.filenames:
-            with open(filename, "r") as file:
+            with open(filename, "r", encoding="utf-8") as file:
                 xml_content = file.read()
                 versions[filename] = get_tc_version(xml_content)
                 pinned[filename] = tc_version_pinned(xml_content)
@@ -86,10 +86,10 @@ def main(args=None):
                 reason_msg = f"\nReason: {args.reason}" if args.reason else ""
                 if args.fix:
                     for filename in mismatched_files:
-                        with open(filename, "r") as file:
+                        with open(filename, "r", encoding="utf-8") as file:
                             xml_content = file.read()
                         fixed_content = fix_tc_version(xml_content, args.target_version)
-                        with open(filename, "w") as file:
+                        with open(filename, "w", encoding="utf-8") as file:
                             file.write(fixed_content)
 
                     print(
@@ -116,10 +116,10 @@ def main(args=None):
             if mismatched_files:
                 if args.fix:
                     for filename in mismatched_files:
-                        with open(filename, "r") as file:
+                        with open(filename, "r", encoding="utf-8") as file:
                             xml_content = file.read()
                         fixed_content = fix_pinned_version(xml_content, args.pinned)
-                        with open(filename, "w") as file:
+                        with open(filename, "w", encoding="utf-8") as file:
                             file.write(fixed_content)
                     print(
                         f"Fixed pinned state for:{itemize}{itemize.join(mismatched_files)}"
