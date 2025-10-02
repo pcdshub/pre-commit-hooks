@@ -1,0 +1,14 @@
+name: PCDS pre-commit Testing
+
+on:
+  push:
+  pull_request:
+  release:
+    types:
+      - created
+
+jobs:
+  standard:
+    uses: pcdshub/pcds-ci-helpers/.github/workflows/pre-commit.yml@master
+    with:
+      args: "--all-files"
