@@ -24,13 +24,15 @@ def check_file(filename):
     non_fixed_library_versions = added_libraries - fixed_version_libraries
 
     if len(non_fixed_library_versions) == 1:
-        raise PreCommitException(
-            f"Library version of {list(non_fixed_library_versions)[0]} is not fixed!"
-        )
+        raise PreCommitException((
+            f"Library version of {list(non_fixed_library_versions)[0]} is "
+            f"not fixed! File parsed: {filename}"
+        ))
     elif len(non_fixed_library_versions) > 1:
-        raise PreCommitException(
-            f"Library version of {', '.join(non_fixed_library_versions)} are not fixed!"
-        )
+        raise PreCommitException((
+            f"Library version of {', '.join(non_fixed_library_versions)} "
+            f"are not fixed! File parsed: {filename}"
+        ))
 
 
 def main(args=None):
