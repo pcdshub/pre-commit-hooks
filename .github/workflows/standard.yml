@@ -8,7 +8,67 @@ on:
       - created
 
 jobs:
-  standard:
+  pre_commit:
     uses: pcdshub/pcds-ci-helpers/.github/workflows/pre-commit.yml@master
     with:
       args: "--all-files"
+
+  test:
+    name: "Python 3.12: pip"
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        # The following allows for each run step to utilize ~/.bash_profile
+        # for setting up the per-step initial state.
+        # --login: a login shell. Source ~/.bash_profile
+        # -e: exit on first error
+        # -o pipefail: piped processes are important; fail if they fail
+        shell: bash --login -eo pipefail {0}
+
+    steps:
+    - uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+        submodules: 'recursive'
+
+    - name: Check version to be built
+      run: |
+        # NOTE: If you run CI on your own fork, you may not have the right version
+        # number for the package. Synchronize your tags with the upstream,
+        # otherwise cross-dependencies may result in confusing build failure.
+        (echo "Package version: $(git describe --tags)" | tee "$GITHUB_STEP_SUMMARY") || \
+          echo "::warning::Git tags not found in repository. Build may fail!"
+
+    - name: Check environment variables for issues
+      run: |
+        echo "* Package to be built: pre-commit"
+
+    - name: Prepare for log files
+      run: |
+        mkdir $HOME/logs
+
+    - uses: actions/setup-python@v5
+      with:
+        python-version: "3.12"
+
+    - name: Upgrade pip
+      run: |
+        pip install --upgrade pip
+
+    - name: Install package
+      run: |
+        python -m pip install .
+
+    - name: Check the pip packages in the test env
+      run: |
+        pip list
+
+    - name: Run tests
+      run: |
+        pytest -v \
+          --log-file="$HOME/logs/debug_log.txt" \
+          --log-format='%(asctime)s.%(msecs)03d %(module)-15s %(levelname)-8s %(threadName)-10s %(message)s' \
+          --log-file-date-format='%H:%M:%S' \
+          --log-level=DEBUG \
+          2>&1 | tee "$HOME/logs/pytest_log.txt"
