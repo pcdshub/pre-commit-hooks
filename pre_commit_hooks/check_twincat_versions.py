@@ -46,7 +46,9 @@ def main(args=None):
     if args is None:
         parser = argparse.ArgumentParser()
         parser.add_argument(
-            "filenames", nargs="+", help="List of tsproj and tspproj filenames to process."
+            "filenames",
+            nargs="+",
+            help="List of tsproj and tspproj filenames to process.",
         )
         parser.add_argument(
             "--target-version", type=str, help="Target TwinCAT version to enforce."
