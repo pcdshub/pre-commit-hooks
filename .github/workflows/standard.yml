@@ -9,7 +9,7 @@ on:
 
 jobs:
   pre_commit:
-    uses: pcdshub/pcds-ci-helpers/.github/workflows/pre-commit.yml@master
+    uses: pcdshub/pcds-ci-helpers/.github/workflows/pre-commit.yml@2e7e5ec8fb8afca5fa0cdb60b82b0f1b99cd2647
     with:
       args: "--all-files"
 
@@ -27,7 +27,7 @@ jobs:
         shell: bash --login -eo pipefail {0}
 
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0
       with:
         fetch-depth: 0
         submodules: 'recursive'
@@ -48,7 +48,7 @@ jobs:
       run: |
         mkdir $HOME/logs
 
-    - uses: actions/setup-python@v5
+    - uses: actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405
       with:
         python-version: "3.12"
 
