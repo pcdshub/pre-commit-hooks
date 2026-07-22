@@ -9,7 +9,7 @@ on:
 
 jobs:
   pre_commit:
-    uses: pcdshub/pcds-ci-helpers/.github/workflows/pre-commit.yml@2e7e5ec8fb8afca5fa0cdb60b82b0f1b99cd2647
+    uses: pcdshub/pcds-ci-helpers/.github/workflows/pre-commit.yml@d535ae04c63236687160bfde064e83489a5eceba
     with:
       args: "--all-files"
 
